@@ -279,19 +279,6 @@ e~ = best translation, the one with highest probability</code></pre>
           <img src='img/transformer.png' style='max-width: 25%; margin: 0px, 20px, 0px, 20px; border: none; background: none;box-shadow: none; '/>
           <p style='font-size: 35%;'>"Attention Is All You Need" - Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin <br/> Google Brain https://arxiv.org/abs/1706.03762</p>
         </section>
-				<section data-background-image="img/ZsMwlm2-redish.jpg">
-          <h3>Why move from SMT to NMT?</h3>
-          <ul>
-            <li>Research results were too good to ignore.</li>
-            <li>The fluency of translations was a huge step forward compared to statistical systems.</li>
-            <li>We knew that there would be exciting future work to be done in this area.</li>
-          </ul>
-        </section>
-        <section data-background-image="img/ZsMwlm2-redish.jpg">
-          <h3>Why move from SMT to NMT?</h3>
-          <img src='img/wmt.png' style='max-width: 50%; max-height: 50%; border: none; background: none;box-shadow: none; '/>
-          <p style='font-size: 50%;'>The University of Edinburgh’s Neural MT Systems for WMT17 – Rico Sennrich, Alexandra Birch, Anna Currey, Ulrich Germann, Barry Haddow, Kenneth Heafield, Antonio Valerio Miceli Barone and Philip Williams.</p>
-        </section>
 				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
           <h3>SMT versus NMT at Scale</h3>
           <div style='font-size: 85%;'>
@@ -492,33 +479,75 @@ e~ = best translation, the one with highest probability</code></pre>
            <p style='font-size: 50%;'>https://research.fb.com/announcing-tensor-comprehensions/</p>
          </section>
 
+				 <section data-background-image="img/ZsMwlm2-yellowish.jpg">
+ 					<h3>Pipeline Tooling</h3>
+           <ul style='font-size: 80%;'>
+             <li>Apache NiFi</li>
+						 <li>Apache OpenNLP</li>
+             <li>Sockeye</li>
+             <li>Solr</li>
+           </ul>
+         </section>
+				 <section data-background-image="img/ZsMwlm2-yellowish.jpg">
+					 <h3>Apache NiFi</h3>
+					 <ul style='font-size: 80%;'>
+						 <li>Data flow orchestration</li>
+						 <li>Able to ingest and manipulate data using processors</li>
+						 <li>Organized into <i>flows</i><li>
+						 <li>Out-of-the-box QuerySolr processor</li>
+						 <ul>
+							 <li>Executes a query against a Solr instance</li>
+							 <li>Results returned as XML</li>
+						 </ul>
+						 <li>https://nifi.apache.org/</li>
+						 <li>https://github.com/jzonthemtn/multilanguage-search</li>
+					 </ul>
+				 </section>
+				 <section data-background-image="img/ZsMwlm2-yellowish.jpg">
+					 <h3>Apache OpenNLP</h3>
+					 <ul style='font-size: 80%;'>
+						 <li>Library of common NLP tools</li>
+						 <li>This pipeline uses:</li>
+						 <ul>
+							 <li>Language detection</li>
+							 <li>Sentence extraction</li>
+							 <li>Tokenization</li>
+						 </ul>
+						 <li>https://opennlp.apache.org</li>
+					 </ul>
+				 </section>
         <section data-background-image="img/ZsMwlm2-yellowish.jpg">
 					<h3>Sockeye</h3>
           <ul style='font-size: 80%;'>
-            <li>Neural Machine Translation project</li>
-            <li>Written in Python and based on MXNet</li>
+            <li>Neural Machine Translation tool</li>
+            <li>Written in Python and utilizes MXNet</li>
             <li>Sequence-to-sequence framework that supports:</li>
 						<ul>
-            <li>Deep Recurrent Neural Networks with Attention</li>
-            <li>Transformer Models with self-attention</li>
-            <li>Fully convolutional sequence-to-sequence models</li>
-					</ul>
+              <li>Deep Recurrent Neural Networks with Attention</li>
+              <li>Transformer Models with self-attention</li>
+              <li>Fully convolutional sequence-to-sequence models</li>
+					  </ul>
             <li><i class="fa fa-github" aria-hidden="true"></i> https://github.com/awslabs/sockeye</li>
           </ul>
         </section>
+				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
+					<h3>Solr</h3>
+					<ul style='font-size: 80%;'>
+						<li>Indexed plain text news articles</li>
+						<li>~100,000 English news articles</li>
+						<li>~30,000 German news articles</li>
+						<ul>
+						<li>Deep Recurrent Neural Networks with Attention</li>
+						<li>Transformer Models with self-attention</li>
+						<li>Fully convolutional sequence-to-sequence models</li>
+					</ul>
+						<li><i class="fa fa-github" aria-hidden="true"></i> https://github.com/awslabs/sockeye</li>
+					</ul>
+				</section>
 				<section data-background-color="#9E9E9E">
 						<h4>NiFi Flow</h4>
 						<img src='img/nifi-flow.png' style='max-width: 100%; border: none; box-shadow: none; background: none; float: left;' align="center"/>
 				</section>
-        <section data-background-image="img/ZsMwlm2-yellowish.jpg">
-          <h3>References</h3>
-          <ul style='font-size: 70%'>
-            <li>Apache NiFI &mdash; https://nifi.apache.org/</li>
-            <li>Apache OpenNLP &mdash; https://opennlp.apache.org</li>
-            <li>Sockeye - https://github.com/awslabs/sockeye</li>
-            <li>GitHub &mdash;https://github.com/jzonthemtn/multilanguage-search</li>
-          </ul>
-        </section>
         <section data-background-image="img/ZsMwlm2-yellowish.jpg">
           <h3>Credits</h3>
           <br/>
