@@ -117,216 +117,381 @@
           <h3>UC2 &mdash; native only ?</h3>
           <img src='img/uc2.png' style='border: none; background: none;box-shadow: none; '/>
         </section>
-        <section data-background-image="img/ZsMwlm2-purpleish.jpg">
-          <h3>What is Machine Translation ?</h3>
+
+				<section data-background-image="img/ZsMwlm2-purpleish.jpg">
+            <h3>What is Machine Translation ?</h3>
         </section>
-        <section data-background-image="img/ZsMwlm2-purpleish.jpg">
-          <p style='text-align: left'>Generate Translations from Statistical Models trained on Bilingual Corpora.</p>
-          <p style='text-align: left'>Translation happens per a probability distribution <code>p(e/f)</code></p>
-          <pre><code data-trim data-noescape>E = string in the target language (English)
+        <section data-background-image="img/ZsMwlm2-greenish.jpg">
+           <h3>Statistical Machine Translation</h3>
+            <p style='text-align: left'>Generate Translations from Statistical Models trained on Bilingual Corpora.</p>
+            <p style='text-align: left'>Translation happens per a probability distribution <code>p(e|f)</code></p>
+            <pre><code data-trim data-noescape>E = string in the target language (English)
 
 F = string in the source language (Spanish)
 
-e~ = argmax  p(e/f) = argmax p(f/e) * p(e)
+e~ = argmax  p(e|f) = argmax p(f|e) * p(e)
 
 e~ = best translation, the one with highest probability</code></pre>
         </section>
         <section data-background-image="img/ZsMwlm2-greenish.jpg">
-          <h3>Word-based Translation</h3>
+            <h3>Word-based Translation</h3>
         </section>
         <section data-background-image="img/ZsMwlm2-greenish.jpg">
-          <dl>
-            <dt>How to translate a word &rarr; lookup in dictionary</dt>
-            <dd>Ge­b&auml;u­de — building, house, tower.</dd>
-            <br/>
-            <dt>Multiple translations</dt>
-            <dd>some more frequent than others<br/>
-            for instance: house and building most common</dd>
-          </dl>
+            <dl>
+                <dt>How to translate a word &rarr; lookup in dictionary</dt>
+                <dd>Ge­b&auml;u­de — building, house, tower.</dd>
+                <br/>
+                <dt>Multiple translations</dt>
+                <dd>some more frequent than others<br/>
+                    for instance: house and building most common</dd>
+            </dl>
         </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg">
-          <p>Look at a parallel corpus<br/>(German text along with English translation)</p>
-          <table style='color: #ffffff'>
-            <thead>
-              <tr>
-                <th>Translation of Ge­b&auml;u­de</th><th>Count</th><th>Probability</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>house</td><td>5.28 billion</td><td>0.51</td>
-              </tr>
-              <tr>
-                <td>building</td><td>4.16 billion</td><td>0.402</td>
-              </tr>
-              <tr>
-                <td>tower</td><td>9.28 million</td><td>0.09</td>
-              </tr>
-            </tbody>
-          </table>
+				<section data-background-image="img/ZsMwlm2-greenish.jpg">
+            <p>Look at a parallel corpus<br/>(German text along with English translation)</p>
+            <table style="color: #ffffff">
+                <thead>
+                <tr>
+                    <th>Translation of Ge­b&auml;u­de</th><th>Count</th><th>Probability</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>house</td><td>5.28 billion</td><td>0.51</td>
+                </tr>
+                <tr>
+                    <td>building</td><td>4.16 billion</td><td>0.402</td>
+                </tr>
+                <tr>
+                    <td>tower</td><td>9.28 million</td><td>0.09</td>
+                </tr>
+                </tbody>
+            </table>
         </section>
         <section data-background-image="img/ZsMwlm2-yellowish.jpg">
-          <h3>Alignment</h3>
+            <h3>Alignment</h3>
             <ul>
-              <li>In a parallel text (or when we translate), we align words in one language with the word in the other<br/>
-              <table style='color: #ffffff'>
-                <tr>
-                  <td>Das</td><td>Geb&auml;ude</td><td>ist</td><td>hoch</td>
-                </tr>
-                <tr>
-                  <td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td>
-                </tr>
-                <tr>
-                  <td>the</td><td>building</td><td>is</td><td>high</td>
-                </tr>
-              </table>
-              </li>
-              <li>Word positions are numbered 1&mdash;4</li>
+                <li>In a parallel text (or when we translate), we align words in one language with the word in the other<br/>
+                    <table style="color: #ffffff">
+                        <tr>
+                            <td>Das</td><td>Geb&auml;ude</td><td>ist</td><td>hoch</td>
+                        </tr>
+                        <tr>
+                            <td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td>
+                        </tr>
+                        <tr>
+                            <td>the</td><td>building</td><td>is</td><td>high</td>
+                        </tr>
+                    </table>
+                </li>
+                <li>Word positions are numbered 1&mdash;4</li>
             </ul>
         </section>
-        <section data-background-image="img/ZsMwlm2-yellowish.jpg">
-          <h3>Alignment Function</h3>
-          <ul>
-            <li>Define the Alignment with an Alignment Function</li>
-            <li>Mapping an English target word at position <code>i</code> to <code>a</code> German source word at position <code>j</code> with a function <code>a : i &rarr; j</code></li>
-            <li>Example</li>
-          </ul>
-          <pre><code data-trim data-noescape>a : {1 &rarr; 1, 2 &rarr; 2, 3 &rarr; 3, 4 &rarr; 4}</code></pre>
+				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
+            <h3>Alignment Function</h3>
+            <ul>
+                <li>Define the Alignment with an Alignment Function</li>
+                <li>Mapping an English target word at position <code>i</code> to <code>a</code> German source word at position <code>j</code> with a function <code>a : i &rarr; j</code></li>
+                <li>Example</li>
+            </ul>
+            <pre><code data-trim data-noescape>a : {1 &rarr; 1, 2 &rarr; 2, 3 &rarr; 3, 4 &rarr; 4}</code></pre>
         </section>
         <section data-background-image="img/ZsMwlm2-blueish.jpg">
-          <h3>One-to-Many Translation</h3>
-          <p>A source word could translate into multiple target words</p>
-          <table style='color: #ffffff'>
-            <tr>
-              <td>Das</td><td>ist</td><td>ein</td><td colspan='3' style='text-align: center;'>Hochhaus&nbsp;&nbsp;&nbsp;</td>
-            </tr>
-            <tr>
-              <td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&#8601;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&#8600;</td>
-            </tr>
-            <tr>
-              <td>This</td><td>is</td><td>a</td><td>high&nbsp;&nbsp;&nbsp;</td><td>rise</td><td>building</td>
-            </tr>
-          </table>
+            <h3>One-to-Many Translation</h3>
+            <p>A source word could translate into multiple target words</p>
+            <table style="color: #ffffff">
+                <tr>
+                    <td>Das</td><td>ist</td><td>ein</td><td colspan='3' style='text-align: center;'>Hochhaus&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&#8601;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&#8600;</td>
+                </tr>
+                <tr>
+                    <td>This</td><td>is</td><td>a</td><td>high&nbsp;&nbsp;&nbsp;</td><td>rise</td><td>building</td>
+                </tr>
+            </table>
+        </section>
+				<section data-background-image="img/ZsMwlm2-redish.jpg">
+            <h3>Phrase-based Translation</h3>
         </section>
         <section data-background-image="img/ZsMwlm2-redish.jpg">
-          <h3>Phrase-based Translation</h3>
-        </section>
-        <section data-background-image="img/ZsMwlm2-redish.jpg">
-          <h3>Alignment Function</h3>
-          <ul>
-            <li>Word-Based Models translate words as atomic units</li>
-            <li>Phrase-Based Models translate phrases as atomic units</li>
-            <li>Advantages:</li>
+            <h3>Phrase-Based Model</h3>
+            <table style='font-size: 80%; color: #ffffff'>
+                <tr>
+                    <td>Berlin</td><td>ist</td><td>ein</td><td>herausragendes</td><td>Kunst- und Kulturzentrum</td><td>.</td>
+                </tr>
+                <tr>
+                    <td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td>
+                </tr>
+                <tr>
+                    <td>Berlin</td><td>is</td><td>an</td><td>outstanding</td><td>Art and cultural center</td><td>.</td>
+                </tr>
+            </table>
+            <br/>
             <ul>
-              <li>many-to-many translation can handle non-compositional phrases</li>
-              <li>use of local context in translation</li>
-              <li>the more data, the longer phrases can be learned</li>
+                <li>Foreign input is segmented in phrases</li>
+                <li>Each phrase is translated into English</li>
+                <li>Phrases are reordered</li>
             </ul>
-            <li>&ldquo;Standard Model&rdquo;, used by Google Translate and others</li>
-          </ul>
         </section>
         <section data-background-image="img/ZsMwlm2-redish.jpg">
-          <h3>Phrase-Based Model</h3>
-          <table style='font-size: 80%; color: #ffffff'>
-            <tr>
-              <td>Berlin</td><td>ist</td><td>ein</td><td>herausragendes</td><td>Kunst- und Kulturzentrum</td><td>.</td>
-            </tr>
-            <tr>
-              <td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td>
-            </tr>
-            <tr>
-              <td>Berlin</td><td>is</td><td>an</td><td>outstanding</td><td>Art and cultural center</td><td>.</td>
-            </tr>
-          </table>
-          <br/>
-          <ul>
-            <li>Foreign input is segmented in phrases</li>
-            <li>Each phrase is translated into English</li>
-            <li>Phrases are reordered</li>
-          </ul>
+            <h3>Alignment Function</h3>
+            <ul>
+                <li>Word-Based Models translate words as atomic units</li>
+                <li>Phrase-Based Models translate phrases as atomic units</li>
+                <li>Advantages:</li>
+                <ul>
+                    <li>many-to-many translation can handle non-compositional phrases</li>
+                    <li>use of local context in translation</li>
+                    <li>the more data, the longer phrases can be learned</li>
+                </ul>
+                <li>&ldquo;Standard Model&rdquo;, used by Google Translate until 2016 (switched to Neural MT)</li>
+            </ul>
+        </section>
+				<section data-background-image="img/ZsMwlm2-purpleish.jpg">
+            <h3>Decoding</h3>
         </section>
         <section data-background-image="img/ZsMwlm2-purpleish.jpg">
-          <h3>Decoding</h3>
+            <ul>
+                <li>We have a mathematical model for translation <code>p(e|f)</code></li>
+                <li>Task of decoding: find the translation <code>e<sub style="font-size:50%">best</small></sub></code> with highest probability<br/>
+                    <pre><code data-trim data-noescape>e<sub style="font-size:50%">best</sub> = <i>argmax</i> p(e|f)</code></pre>
+                </li>
+                <li>Two types of error</li>
+                <ul>
+                    <li>the most probable translation is bad &rarr; fix the model</li>
+                    <li>search does not find the most probable translation &rarr; fix the search</li>
+                </ul>
+            </ul>
         </section>
         <section data-background-image="img/ZsMwlm2-purpleish.jpg">
+            <h3>Neural Machine Translation</h3>
+        </section>
+        <section data-background-image="img/ZsMwlm2-purpleish.jpg">
+          <p style='text-align: left'>Generate Translations from Neural Network models trained on Bilingual Corpora.</p>
+          <p style='text-align: left'>Translation happens per a probability distribution one word at time (no phrases).</p>
+          <div style="background: #c9c9c9;">
+            <img src='img/softmax.png' style='margin: 0px, 20px, 0px, 20px; border: none; background: none;box-shadow: none; '/><br/>
+            <img src='img/cross_entropy.png' style='margin: 0px, 20px, 0px, 20px; border: none; background: none;box-shadow: none; '/>
+          </div>
+       </section>
+        <section data-background-image="img/ZsMwlm2-purpleish.jpg">
+          <p style='text-align: left'>NMT is deep learning applied to machine translation.</p>
+          <img src='img/transformer.png' style='max-width: 25%; margin: 0px, 20px, 0px, 20px; border: none; background: none;box-shadow: none; '/>
+          <p style='font-size: 35%;'>"Attention Is All You Need" - Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin <br/> Google Brain https://arxiv.org/abs/1706.03762</p>
+        </section>
+				<section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>Why move from SMT to NMT?</h3>
           <ul>
-            <li>We have a mathematical model for translation <code>p(e|f)</code></li>
-            <li>Task of decoding: find the translation <code>e<sub style="font-size:50%">best</small></sub></code> with highest probability<br/>
-            <pre><code data-trim data-noescape>e<sub style="font-size:50%">best</sub> = <i>argmax</i> p(e|f)</code></pre>
-            </li>
-            <li>Two types of error</li>
-            <ul>
-              <li>the most probable translation is bad &rarr; fix the model</li>
-              <li>search does not find the most probable translation &rarr; fix the search</li>
-            </ul>
+            <li>Research results were too good to ignore.</li>
+            <li>The fluency of translations was a huge step forward compared to statistical systems.</li>
+            <li>We knew that there would be exciting future work to be done in this area.</li>
           </ul>
         </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg" data-transition="none">
-          <h3>Translation Process</h3>
-          <p>Translate this query from German into English</p>
-          <table style='color: #ffffff'>
-            <tr>
-              <td>er</td><td>trinkt</td><td>ja</td><td>noch</td><td>nichts</td>
-            </tr>
-          </table>
-          <table id='special-table' style='color: #ffffff'>
-            <col width="30%"/><col width="1%"/><col width="30%"/><col width="1%"/><col width="30%"/>
-            <tr>
-              <td style="text-align: center;">er</td><td class='borderless'>&nbsp;</td><td class='borderless' style="">&nbsp;</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td>
-            </tr>
-            <tr>
-              <td class='borderless' style="text-align: center;">&darr;</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td>
-            </tr>
-            <tr>
-              <td style="text-align: center;">he</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td>
-            </tr>
-          </table>
-          <p>Pick and input phrase, translate</p>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>Why move from SMT to NMT?</h3>
+          <img src='img/wmt.png' style='max-width: 50%; max-height: 50%; border: none; background: none;box-shadow: none; '/>
+          <p style='font-size: 50%;'>The University of Edinburgh’s Neural MT Systems for WMT17 – Rico Sennrich, Alexandra Birch, Anna Currey, Ulrich Germann, Barry Haddow, Kenneth Heafield, Antonio Valerio Miceli Barone and Philip Williams.</p>
         </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg" data-transition="none">
-          <h3>Translation Process</h3>
-          <p>Translate this query from German into English</p>
-          <table style='color: #ffffff'>
-            <tr>
-              <td>er</td><td>trinkt</td><td>ja</td><td>noch</td><td>nichts</td>
-            </tr>
-          </table>
-          <table id='special-table' style='color: #ffffff'>
-            <col width="30%"/><col width="1%"/><col width="30%"/><col width="1%"/><col width="30%"/>
-            <tr>
-              <td style="text-align: center;">er</td><td class='borderless'>&nbsp;</td><td class='borderless'></td><td class='borderless'>&nbsp;</td><td style="text-align: center;">ja noch nichts</td>
-            </tr>
-            <tr>
-              <td class='borderless' style="text-align: center;">&darr;</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td><td class='borderless'><img src="img/diagonal-left.png" style="border: none; box-shadow: none; background: none; width: 0.6em; margin: 0px; max-width: none; max-height: none;" /></td><td class='borderless'>&nbsp;</td>
-            </tr>
-            <tr>
-              <td style="text-align: center;">he</td><td class='borderless'>&nbsp;</td><td style='text-align: center;'>does not yet</td><td class='borderless'>&nbsp;</td><td class='borderless'></td>
-            </tr>
-          </table>
-          <p>Pick and input phrase, translate</p>
+				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
+          <h3>SMT versus NMT at Scale</h3>
+          <div style='font-size: 85%;'>
+            <table>
+              <tr>
+                <th>Apache Joshua</th>
+                <th>Sockeye</th>
+              </tr>
+              <tr>
+                <td>Reasonable Quality Translation</td>
+                <td>High Quality Translations</td>
+              </tr>
+              <tr>
+                <td>Java / C++</td>
+                <td>Python 3 / C++</td>
+              </tr>
+              <tr>
+                <td>Model size 60GB-120GB</td>
+                <td>Model size 256 MB</td>
+              </tr>
+              <tr>
+                <td>Complicated Training Process</td>
+                <td>Simple Training Process</td>
+              </tr>
+              <tr>
+                <td>Relatively complex implementation</td>
+                <td>400 lines of code</td>
+              </tr>
+              <tr>
+                <td>Low translation costs</td>
+                <td>High translation costs</td>
+              </tr>
+              <tr>
+            </table>
+          </div>
         </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg" data-transition="none">
-          <h3>Translation Process</h3>
-          <p>Translate this query from German into English</p>
-          <table style='color: #ffffff'>
-            <tr>
-              <td>er</td><td>trinkt</td><td>ja</td><td>noch</td><td>nichts</td>
-            </tr>
-          </table>
-          <table id='special-table' style='color: #ffffff'>
-            <col width="30%"/><col width="1%"/><col width="30%"/><col width="1%"/><col width="30%"/>
-            <tr>
-              <td style="text-align: center;">er</td><td class='borderless'>&nbsp;</td><td>trinkt</td><td class='borderless'>&nbsp;</td><td style="text-align: center;">ja noch nichts</td>
-            </tr>
-            <tr>
-              <td class='borderless' style="text-align: center;">&darr;</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td><td class='borderless'><img src="img/crossing.png" style="border: none; box-shadow: none; background: none; width: 0.7em; margin: 0px; max-width: none; max-height: none;" /></td><td class='borderless'>&nbsp;</td>
-            </tr>
-            <tr>
-              <td style="text-align: center;">he</td><td class='borderless'>&nbsp;</td><td style='text-align: center;'>does not yet</td><td class='borderless'>&nbsp;</td><td>drink</td>
-            </tr>
-          </table>
-          <p>Pick and input phrase, translate</p>
+				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
+          <h3>SMT versus NMT at Scale</h3>
+          <div style='font-size: 85%;'>
+            <table>
+              <tr>
+                <th>Apache Joshua</th>
+                <th>Sockeye</th>
+              </tr>
+              <tr>
+                <td>Reasonable Quality Translation</td>
+                <td><span style="color: lightgreen">High Quality Translations<span></td>
+              </tr>
+              <tr>
+                <td>Java / C++</td>
+                <td>Python 3 / C++</td>
+              </tr>
+              <tr>
+                <td>Model size 60GB-120GB</td>
+                <td><span style="color: lightgreen">Model size 256 MB</span></td>
+              </tr>
+              <tr>
+                <td>Complicated Training Process</td>
+                <td><span style="color: lightgreen">Simple Training Process</span></td>
+              </tr>
+              <tr>
+                <td>Relatively complex implementation</td>
+                <td><span style="color: lightgreen">400 lines of code</span></td>
+              </tr>
+              <tr>
+                <td><span style="color: lightgreen">Low translation costs</span></td>
+                <td>High translation costs</td>
+              </tr>
+              <tr>
+            </table>
+          </div>
         </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>NMT Samples</h3>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <p>Jetzt LIVE: Abgeordnete debattieren über Zuspitzung des Syrien-Konflikts.</p>
+          <p>last but not least, Members are debating the escalation of the Syrian conflict.</p>
+        </section>
+				<section data-background-image="img/ZsMwlm2-redish.jpg">
+          <p>Sie haben wenig Zeit, wollen aber Fett verbrennen und Muskeln aufbauen?</p>
+          <p>You have little time, but want to burn fat and build muscles?</p>
+        </section>
+				<section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>NMT Challenges – Input</h3>
+          <ul>
+            <li>The input into all neural network models is always a vector.</li>
+            <li>Training data is always parallel text.</li>
+            <li>How do you represent a word from the text as a vector?</li>
+          </ul>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>Embedding Layer</h3>
+          <img src='img/vocab_first.png' style='max-width: 100%; border: none; background: none;box-shadow: none; '/>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <img src='img/vocab_learned.png' style='max-width: 100%; border: none; background: none;box-shadow: none; '/>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>NMT Challenges – Rare Words</h3>
+          <p>Ok we can now represent 30,000 words as vectors, what about the rest?</p>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>NMT Challenges – Byte Pair Encoding</h3>
+          <img src='img/bpe.png' style='max-width: 65%; border: none; background: none;box-shadow: none; '/>
+          <p style='font-size: 35%;'>Rico Sennrich, Barry Haddow and Alexandra Birch (2016): Neural Machine Translation of Rare Words with Subword Units Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (ACL 2016). Berlin, Germany.</p>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h4>Byte Pair Encoding</h4>
+          "positional addition contextual"
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h4>Byte Pair Encoding</h4>
+          "posi<span style="color: red">X</span>onal addi<span style="color: red">X</span>on contextual"</br>
+          ti = <span style="color: red">X</span>
+        </section>
+				<section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h4>Byte Pair Encoding</h4>
+          "posi<span style="color: red">X</span>on<span style="color: blue">Y</span> addi<span style="color: red">X</span>on contextu<span style="color: blue">Y</span>"</br>
+          ti = <span style="color: red">X</span></br>
+          al = <span style="color: blue">Y</span>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h4>Byte Pair Encoding</h4>
+          "posi<span style="color: yellow">Z</span>n<span style="color: blue">Y</span> addi<span style="color: yellow">Z</span>n contextu<span style="color: blue">Y</span>"</br>
+          ti = <span style="color: red">X</span></br>
+          al = <span style="color: blue">Y</span></br>
+          <span style="color: red">X</span>o = <span style="color: yellow">Z</span>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h4>Byte Pair Encoding</h4>
+          these<br/>
+          ing<br/>
+          other<br/>
+          s,<br/>
+          must<br/>
+          Member
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>NMT Challenges – Jagged Tensors</h3>
+          <p>Input is not sorted by length.</p>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>Jagged Tensors cont.</h3>
+          <img src='img/jagged.png' style='max-width: 80%; border: none; background: none;box-shadow: none; '/>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>Jagged Tensors cont.</h3>
+          <img src='img/sorted.png' style='max-width: 80%; border: none; background: none;box-shadow: none; '/>
+        </section>
+        <section data-background-image="img/ZsMwlm2-redish.jpg">
+          <h3>Jagged Tensors cont.</h3>
+          <img src='img/batch.png' style='max-width: 80%; border: none; background: none;box-shadow: none; '/>
+        </section>
+				<section data-background-image="img/ZsMwlm2-redish.jpg">
+           <h3>NMT Challenges – Cost</h3>
+           <ul>
+             <li>Step 1: Create great profiling tools, measurement.</li>
+             <li>Step 2: Get specialists to optimize bottlenecks. </li>
+             <li>Step 3: ???</li>
+             <li>Step 4: Profit.</li>
+           </ul><br/><br/>
+
+           <span style='font-size: 50%;'>New layer norm, top-k, batch-mul, transpose, smoothing op.  3.5x speedup so far.  Working in branches:</span><br/>
+           <span style='font-size: 50%;'>https://github.com/MXNetEdge/sockeye/tree/dev_speed</span><br/>
+           <span style='font-size: 50%;'>https://github.com/MXNetEdge/incubator-mxnet/tree/dev_speed</span><br/>
+         </section>
+         <section data-background-image="img/ZsMwlm2-redish.jpg">
+           <h3>Apache MXNet Profiling Tools</h3>
+           <table>
+             <tr>
+               <th>CPU Profiler (vtune)</th>
+               <th>GPU Profiler (nvprof)</th>
+             </tr>
+           </table>
+           <table>
+             <td><img src='img/vtune_2.png' style='width: 400px; border: none; background: none;box-shadow: none; '/></td>
+             <td><img src='img/lstm.png' style='width: 400px; border: none; background: none;box-shadow: none; '/></td>
+           </table>
+         </section>
+         <section data-background-image="img/ZsMwlm2-redish.jpg">
+           <h3>TVM</h3>
+             <p style='font-size: 75%;'>TVM is a Tensor intermediate representation(IR) stack for deep learning systems. It is designed to close the gap between the productivity-focused deep learning frameworks, and the performance- and efficiency-focused hardware backends. TVM works with deep learning frameworks to provide end to end compilation to different backends. </p>
+             <p style='font-size: 50%;'>https://github.com/dmlc/tvm</p>
+         </section>
+         <section data-background-image="img/ZsMwlm2-redish.jpg">
+           <h3>Alibaba TVM Optimization</h3>
+             <img src='img/transformer.png' style='width: 300px; border: none; background: none;box-shadow: none; '/>
+             <p style='font-size: 50%;'>http://tvmlang.org/2018/03/23/nmt-transformer-optimize.html</p>
+         </section>
+         <section data-background-image="img/ZsMwlm2-redish.jpg">
+           <h3>Alibaba TVM Optimization</h3>
+             <img src='img/tvm_speedup.png' style='width: 400px; border: none; background: none;box-shadow: none; '/>
+         </section>
+         <section data-background-image="img/ZsMwlm2-redish.jpg">
+           <h3>Facebook - Tensor Comprehensions</h3><br/>
+           <img src='img/tc_evol_slower.gif' style='width: 400px; border: none; background: none;box-shadow: none; '/><br/>
+           <p style='font-size: 50%;'>https://research.fb.com/announcing-tensor-comprehensions/</p>
+         </section>
+
         <section data-background-image="img/ZsMwlm2-yellowish.jpg">
 					<h3>Sockeye</h3>
           <ul style='font-size: 80%;'>
