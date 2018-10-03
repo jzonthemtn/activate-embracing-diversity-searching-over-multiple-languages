@@ -40,35 +40,34 @@
           <br/>
           <h3>Embracing Diversity: Searching over multiple languages</h3>
           <br/>
-          <p>Jeff Zemerick<br/>
-             Suneel Marthi
+          <p>Suneel Marthi<br/>
+             Jeff Zemerick
           </p>
-          <p style="font-size: 60%">April 10, 2018<br/>
-             Haystack Conference, Charlottesville, Virginia</p>
+          <p style="font-size: 60%">October 17, 2018<br/>
+             Activate Conference, Montreal</p>
         </section>
 				<section data-background-image="img/ZsMwlm2.jpg">
           <h3>$WhoAreWe</h3>
-          <h6 style='text-align: left; font-size: 80%;'>Jeff Zemerick <br/><span style="font-size: 60%"><i class="fa fa-twitter" aria-hidden="true"></i> @mtnfog</span></h6>
-          <ul style='font-size: 70%;'>
-            <li>Software and AWS Cloud Engineer</li>
-            <li>Contributor to Apache NiFI<br/></li>
-            <li>Committer and PMC on Apache OpenNLP</li>
-          </ul>
-          <br/>
-          <br/>
           <h6 style='text-align: left; font-size: 80%;'>Suneel Marthi <br/><span style="font-size: 60%"><i class="fa fa-twitter" aria-hidden="true"></i> @suneelmarthi</span></h6>
           <ul style='font-size: 70%;'>
             <li>Member of Apache Software Foundation</li>
             <li>Committer and PMC on Apache Mahout, Apache OpenNLP, Apache Streams</li>
           </ul>
+					<br/>
+					<br/>
+					<h6 style='text-align: left; font-size: 80%;'>Jeff Zemerick <br/><span style="font-size: 60%"><i class="fa fa-twitter" aria-hidden="true"></i> @jzonthemtn</span></h6>
+					<ul style='font-size: 70%;'>
+						<li>Software Engineer and AWS Architect</li>
+						<li>Committer and PMC on Apache OpenNLP</li>
+					</ul>
         </section>
         <section data-background-image="img/ZsMwlm2.jpg">
           <h3>Agenda</h3>
           <ul>
             <li>What is Multi-Lingual Search ?</li>
             <li>Why Multi-Lingual Search ?</li>
-            <li>What is Statistical Machine Translation ?</li>
-            <li>Overview of Apache Joshua</li>
+            <li>What is Neural Machine Translation ?</li>
+            <li>Overview of Sockeye</li>
             <li>Dataflow Pipeline</li>
             <li>Demo</li>
           </ul>
@@ -147,7 +146,7 @@ e~ = best translation, the one with highest probability</code></pre>
         </section>
         <section data-background-image="img/ZsMwlm2-greenish.jpg">
           <p>Look at a parallel corpus<br/>(German text along with English translation)</p>
-          <table>
+          <table style='color: #ffffff'>
             <thead>
               <tr>
                 <th>Translation of Ge­b&auml;u­de</th><th>Count</th><th>Probability</th>
@@ -170,7 +169,7 @@ e~ = best translation, the one with highest probability</code></pre>
           <h3>Alignment</h3>
             <ul>
               <li>In a parallel text (or when we translate), we align words in one language with the word in the other<br/>
-              <table>
+              <table style='color: #ffffff'>
                 <tr>
                   <td>Das</td><td>Geb&auml;ude</td><td>ist</td><td>hoch</td>
                 </tr>
@@ -197,7 +196,7 @@ e~ = best translation, the one with highest probability</code></pre>
         <section data-background-image="img/ZsMwlm2-blueish.jpg">
           <h3>One-to-Many Translation</h3>
           <p>A source word could translate into multiple target words</p>
-          <table>
+          <table style='color: #ffffff'>
             <tr>
               <td>Das</td><td>ist</td><td>ein</td><td colspan='3' style='text-align: center;'>Hochhaus&nbsp;&nbsp;&nbsp;</td>
             </tr>
@@ -228,7 +227,7 @@ e~ = best translation, the one with highest probability</code></pre>
         </section>
         <section data-background-image="img/ZsMwlm2-redish.jpg">
           <h3>Phrase-Based Model</h3>
-          <table style='font-size: 80%;'>
+          <table style='font-size: 80%; color: #ffffff'>
             <tr>
               <td>Berlin</td><td>ist</td><td>ein</td><td>herausragendes</td><td>Kunst- und Kulturzentrum</td><td>.</td>
             </tr>
@@ -265,12 +264,12 @@ e~ = best translation, the one with highest probability</code></pre>
         <section data-background-image="img/ZsMwlm2-greenish.jpg" data-transition="none">
           <h3>Translation Process</h3>
           <p>Translate this query from German into English</p>
-          <table>
+          <table style='color: #ffffff'>
             <tr>
               <td>er</td><td>trinkt</td><td>ja</td><td>noch</td><td>nichts</td>
             </tr>
           </table>
-          <table id='special-table'>
+          <table id='special-table' style='color: #ffffff'>
             <col width="30%"/><col width="1%"/><col width="30%"/><col width="1%"/><col width="30%"/>
             <tr>
               <td style="text-align: center;">er</td><td class='borderless'>&nbsp;</td><td class='borderless' style="">&nbsp;</td><td class='borderless'>&nbsp;</td><td class='borderless'>&nbsp;</td>
@@ -287,12 +286,12 @@ e~ = best translation, the one with highest probability</code></pre>
         <section data-background-image="img/ZsMwlm2-greenish.jpg" data-transition="none">
           <h3>Translation Process</h3>
           <p>Translate this query from German into English</p>
-          <table>
+          <table style='color: #ffffff'>
             <tr>
               <td>er</td><td>trinkt</td><td>ja</td><td>noch</td><td>nichts</td>
             </tr>
           </table>
-          <table id='special-table'>
+          <table id='special-table' style='color: #ffffff'>
             <col width="30%"/><col width="1%"/><col width="30%"/><col width="1%"/><col width="30%"/>
             <tr>
               <td style="text-align: center;">er</td><td class='borderless'>&nbsp;</td><td class='borderless'></td><td class='borderless'>&nbsp;</td><td style="text-align: center;">ja noch nichts</td>
@@ -309,12 +308,12 @@ e~ = best translation, the one with highest probability</code></pre>
         <section data-background-image="img/ZsMwlm2-greenish.jpg" data-transition="none">
           <h3>Translation Process</h3>
           <p>Translate this query from German into English</p>
-          <table>
+          <table style='color: #ffffff'>
             <tr>
               <td>er</td><td>trinkt</td><td>ja</td><td>noch</td><td>nichts</td>
             </tr>
           </table>
-          <table id='special-table'>
+          <table id='special-table' style='color: #ffffff'>
             <col width="30%"/><col width="1%"/><col width="30%"/><col width="1%"/><col width="30%"/>
             <tr>
               <td style="text-align: center;">er</td><td class='borderless'>&nbsp;</td><td>trinkt</td><td class='borderless'>&nbsp;</td><td style="text-align: center;">ja noch nichts</td>
@@ -329,40 +328,31 @@ e~ = best translation, the one with highest probability</code></pre>
           <p>Pick and input phrase, translate</p>
         </section>
         <section data-background-image="img/ZsMwlm2-yellowish.jpg">
-          <h3>Apache Joshua</h3>
-          <img src='img/joshua-logo.png' style='border: none; background: none; box-shadow: none;' width='30%' />
-        </section>
-        <section data-background-image="img/ZsMwlm2-yellowish.jpg">
+					<h3>Sockeye</h3>
           <ul style='font-size: 80%;'>
-            <li>Statistical Machine Translation Decoder for phrase-based and hierarchical machine translation</li>
-            <li>Written in Java</li>
-            <li>Provide 64 language packs for machine translation</li>
-            <ul>
-              <li>https://cwiki.apache.org/confluence/display/JOSHUA/Language+Packs</li>
-            </ul>
-            <li>Project initiated by Johns Hopkins Univ. and University of Pennsylvania</li>
-            <li>Presently incubating at Apache Software Foundation</li>
-            <li>https://cwiki.apache.org/confluence/display/JOSHUA</li>
-            <li><i class="fa fa-twitter" aria-hidden="true"></i> @ApacheJoshua</li>
+            <li>Neural Machine Translation project</li>
+            <li>Written in Python and based on MXNet</li>
+            <li>Sequence-to-sequence framework that supports:</li>
+						<ul>
+            <li>Deep Recurrent Neural Networks with Attention</li>
+            <li>Transformer Models with self-attention</li>
+            <li>Fully convolutional sequence-to-sequence models</li>
+					</ul>
+            <li><i class="fa fa-github" aria-hidden="true"></i> https://github.com/awslabs/sockeye</li>
           </ul>
         </section>
-        <section data-background-color="#9E9E9E">
-          <h3>Flows</h3>
-          <img src='img/flow1.png' style='max-width: 50%; border: none; box-shadow: none; background: none; float: left;' />
-          <img src='img/flow2.png' style='max-width: 50%; border: none; box-shadow: none; background: none;' />
-        </section>
+				<section data-background-color="#9E9E9E">
+						<h4>NiFi Flow</h4>
+						<img src='img/nifi-flow.png' style='max-width: 100%; border: none; box-shadow: none; background: none; float: left;' align="center"/>
+				</section>
         <section data-background-image="img/ZsMwlm2-yellowish.jpg">
           <h3>References</h3>
           <ul style='font-size: 70%'>
-            <li>Apache Joshua &mdash; https://cwiki.apache.org/confluence/display/JOSHUA</li>
+            <li>Apache NiFI &mdash; https://nifi.apache.org/</li>
             <li>Apache OpenNLP &mdash; https://opennlp.apache.org</li>
-            <li>Apache NiFi - https://nifi.apache.org</li>
-            <li>GitHub &mdash; https://github.com/jzonthemtn/multilanguage-search</li>
+            <li>Sockeye - https://github.com/awslabs/sockeye</li>
+            <li>GitHub &mdash;https://github.com/jzonthemtn/multilanguage-search</li>
           </ul>
-        </section>
-        <section data-background-color="#9E9E9E">
-            <h4>NiFi Flow</h4>
-            <img src='img/nifi-flow.png' style='max-width: 100%; border: none; box-shadow: none; background: none; float: left;' align="center"/>
         </section>
         <section data-background-image="img/buzzwords_2017-blueish.png">
           <h3>Credits</h3>
