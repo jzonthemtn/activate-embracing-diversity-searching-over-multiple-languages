@@ -110,163 +110,19 @@
           </ul>
         </section>
         <section data-background-image="img/ZsMwlm2-redish.jpg">
-          <h3>UC1 &mdash; tech domain, native first</h3>
+          <h3>Use-case 1 &mdash; tech domain, native first</h3>
           <img src='img/uc1.png' style='max-width: 75%; border: none; background: none;box-shadow: none; '/>
         </section>
         <section data-background-image="img/ZsMwlm2-redish.jpg">
-          <h3>UC2 &mdash; native only ?</h3>
+          <h3>Use-case 2 &mdash; native only ?</h3>
           <img src='img/uc2.png' style='border: none; background: none;box-shadow: none; '/>
         </section>
 
-				<section data-background-image="img/ZsMwlm2-purpleish.jpg">
-            <h3>What is Machine Translation ?</h3>
-        </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg">
-           <h3>Statistical Machine Translation</h3>
-            <p style='text-align: left'>Generate Translations from Statistical Models trained on Bilingual Corpora.</p>
-            <p style='text-align: left'>Translation happens per a probability distribution <code>p(e|f)</code></p>
-            <pre><code data-trim data-noescape>E = string in the target language (English)
-
-F = string in the source language (Spanish)
-
-e~ = argmax  p(e|f) = argmax p(f|e) * p(e)
-
-e~ = best translation, the one with highest probability</code></pre>
-        </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg">
-            <h3>Word-based Translation</h3>
-        </section>
-        <section data-background-image="img/ZsMwlm2-greenish.jpg">
-            <dl>
-                <dt>How to translate a word &rarr; lookup in dictionary</dt>
-                <dd>Ge­b&auml;u­de — building, house, tower.</dd>
-                <br/>
-                <dt>Multiple translations</dt>
-                <dd>some more frequent than others<br/>
-                    for instance: house and building most common</dd>
-            </dl>
-        </section>
-				<section data-background-image="img/ZsMwlm2-greenish.jpg">
-            <p>Look at a parallel corpus<br/>(German text along with English translation)</p>
-            <table style="color: #ffffff">
-                <thead>
-                <tr>
-                    <th>Translation of Ge­b&auml;u­de</th><th>Count</th><th>Probability</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>house</td><td>5.28 billion</td><td>0.51</td>
-                </tr>
-                <tr>
-                    <td>building</td><td>4.16 billion</td><td>0.402</td>
-                </tr>
-                <tr>
-                    <td>tower</td><td>9.28 million</td><td>0.09</td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-        <section data-background-image="img/ZsMwlm2-yellowish.jpg">
-            <h3>Alignment</h3>
-            <ul>
-                <li>In a parallel text (or when we translate), we align words in one language with the word in the other<br/>
-                    <table style="color: #ffffff">
-                        <tr>
-                            <td>Das</td><td>Geb&auml;ude</td><td>ist</td><td>hoch</td>
-                        </tr>
-                        <tr>
-                            <td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td>
-                        </tr>
-                        <tr>
-                            <td>the</td><td>building</td><td>is</td><td>high</td>
-                        </tr>
-                    </table>
-                </li>
-                <li>Word positions are numbered 1&mdash;4</li>
-            </ul>
-        </section>
-				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
-            <h3>Alignment Function</h3>
-            <ul>
-                <li>Define the Alignment with an Alignment Function</li>
-                <li>Mapping an English target word at position <code>i</code> to <code>a</code> German source word at position <code>j</code> with a function <code>a : i &rarr; j</code></li>
-                <li>Example</li>
-            </ul>
-            <pre><code data-trim data-noescape>a : {1 &rarr; 1, 2 &rarr; 2, 3 &rarr; 3, 4 &rarr; 4}</code></pre>
-        </section>
-        <section data-background-image="img/ZsMwlm2-blueish.jpg">
-            <h3>One-to-Many Translation</h3>
-            <p>A source word could translate into multiple target words</p>
-            <table style="color: #ffffff">
-                <tr>
-                    <td>Das</td><td>ist</td><td>ein</td><td colspan='3' style='text-align: center;'>Hochhaus&nbsp;&nbsp;&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&#8601;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&#8600;</td>
-                </tr>
-                <tr>
-                    <td>This</td><td>is</td><td>a</td><td>high&nbsp;&nbsp;&nbsp;</td><td>rise</td><td>building</td>
-                </tr>
-            </table>
-        </section>
-				<section data-background-image="img/ZsMwlm2-redish.jpg">
-            <h3>Phrase-based Translation</h3>
-        </section>
-        <section data-background-image="img/ZsMwlm2-redish.jpg">
-            <h3>Phrase-Based Model</h3>
-            <table style='font-size: 80%; color: #ffffff'>
-                <tr>
-                    <td>Berlin</td><td>ist</td><td>ein</td><td>herausragendes</td><td>Kunst- und Kulturzentrum</td><td>.</td>
-                </tr>
-                <tr>
-                    <td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td><td style='text-align: center;'>&darr;</td>
-                </tr>
-                <tr>
-                    <td>Berlin</td><td>is</td><td>an</td><td>outstanding</td><td>Art and cultural center</td><td>.</td>
-                </tr>
-            </table>
-            <br/>
-            <ul>
-                <li>Foreign input is segmented in phrases</li>
-                <li>Each phrase is translated into English</li>
-                <li>Phrases are reordered</li>
-            </ul>
-        </section>
-        <section data-background-image="img/ZsMwlm2-redish.jpg">
-            <h3>Alignment Function</h3>
-            <ul>
-                <li>Word-Based Models translate words as atomic units</li>
-                <li>Phrase-Based Models translate phrases as atomic units</li>
-                <li>Advantages:</li>
-                <ul>
-                    <li>many-to-many translation can handle non-compositional phrases</li>
-                    <li>use of local context in translation</li>
-                    <li>the more data, the longer phrases can be learned</li>
-                </ul>
-                <li>&ldquo;Standard Model&rdquo;, used by Google Translate until 2016 (switched to Neural MT)</li>
-            </ul>
-        </section>
-				<section data-background-image="img/ZsMwlm2-purpleish.jpg">
-            <h3>Decoding</h3>
-        </section>
-        <section data-background-image="img/ZsMwlm2-purpleish.jpg">
-            <ul>
-                <li>We have a mathematical model for translation <code>p(e|f)</code></li>
-                <li>Task of decoding: find the translation <code>e<sub style="font-size:50%">best</small></sub></code> with highest probability<br/>
-                    <pre><code data-trim data-noescape>e<sub style="font-size:50%">best</sub> = <i>argmax</i> p(e|f)</code></pre>
-                </li>
-                <li>Two types of error</li>
-                <ul>
-                    <li>the most probable translation is bad &rarr; fix the model</li>
-                    <li>search does not find the most probable translation &rarr; fix the search</li>
-                </ul>
-            </ul>
-        </section>
         <section data-background-image="img/ZsMwlm2-purpleish.jpg">
             <h3>Neural Machine Translation</h3>
         </section>
         <section data-background-image="img/ZsMwlm2-purpleish.jpg">
+					<h3>Neural Machine Translation (NMT)</h3>
           <p style='text-align: left'>Generate Translations from Neural Network models trained on Bilingual Corpora.</p>
           <p style='text-align: left'>Translation happens per a probability distribution one word at time (no phrases).</p>
           <div style="background: #c9c9c9;">
@@ -280,72 +136,72 @@ e~ = best translation, the one with highest probability</code></pre>
           <p style='font-size: 35%;'>"Attention Is All You Need" - Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin <br/> Google Brain https://arxiv.org/abs/1706.03762</p>
         </section>
 				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
-          <h3>SMT versus NMT at Scale</h3>
+          <h3>NMT versus SMT at Scale</h3>
           <div style='font-size: 85%;'>
             <table>
               <tr>
-                <th>Apache Joshua</th>
-                <th>Sockeye</th>
+								<th>Sockeye (NMT)</th>
+                <th>Apache Joshua (SMT)</th>
               </tr>
               <tr>
+								<td>High Quality Translations</td>
                 <td>Reasonable Quality Translation</td>
-                <td>High Quality Translations</td>
               </tr>
               <tr>
+								<td>Python 3 / C++</td>
                 <td>Java / C++</td>
-                <td>Python 3 / C++</td>
               </tr>
               <tr>
+								<td>Model size ~256 MB</td>
                 <td>Model size 60GB-120GB</td>
-                <td>Model size 256 MB</td>
               </tr>
               <tr>
+								<td>Simple Training Process</td>
                 <td>Complicated Training Process</td>
-                <td>Simple Training Process</td>
               </tr>
               <tr>
+								<td>400 lines of code</td>
                 <td>Relatively complex implementation</td>
-                <td>400 lines of code</td>
               </tr>
               <tr>
+								<td>High translation costs</td>
                 <td>Low translation costs</td>
-                <td>High translation costs</td>
               </tr>
               <tr>
             </table>
           </div>
         </section>
 				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
-          <h3>SMT versus NMT at Scale</h3>
+          <h3>NMT versus SMT at Scale</h3>
           <div style='font-size: 85%;'>
             <table>
               <tr>
-                <th>Apache Joshua</th>
-                <th>Sockeye</th>
+								<th>Sockeye (NMT)</th>
+                <th>Apache Joshua (SMT)</th>
               </tr>
               <tr>
+								<td><span style="color: lightgreen">High Quality Translations<span></td>
                 <td>Reasonable Quality Translation</td>
-                <td><span style="color: lightgreen">High Quality Translations<span></td>
               </tr>
               <tr>
+								<td>Python 3 / C++</td>
                 <td>Java / C++</td>
-                <td>Python 3 / C++</td>
               </tr>
               <tr>
+								<td><span style="color: lightgreen">Model size ~256 MB</span></td>
                 <td>Model size 60GB-120GB</td>
-                <td><span style="color: lightgreen">Model size 256 MB</span></td>
               </tr>
               <tr>
+								<td><span style="color: lightgreen">Simple Training Process</span></td>
                 <td>Complicated Training Process</td>
-                <td><span style="color: lightgreen">Simple Training Process</span></td>
               </tr>
               <tr>
+								<td><span style="color: lightgreen">400 lines of code</span></td>
                 <td>Relatively complex implementation</td>
-                <td><span style="color: lightgreen">400 lines of code</span></td>
               </tr>
               <tr>
+								<td>High translation costs</td>
                 <td><span style="color: lightgreen">Low translation costs</span></td>
-                <td>High translation costs</td>
               </tr>
               <tr>
             </table>
@@ -356,11 +212,11 @@ e~ = best translation, the one with highest probability</code></pre>
         </section>
         <section data-background-image="img/ZsMwlm2-redish.jpg">
           <p>Jetzt LIVE: Abgeordnete debattieren über Zuspitzung des Syrien-Konflikts.</p>
-          <p>last but not least, Members are debating the escalation of the Syrian conflict.</p>
+          <p style="color: lightgreen">last but not least, Members are debating the escalation of the Syrian conflict.</p>
         </section>
 				<section data-background-image="img/ZsMwlm2-redish.jpg">
           <p>Sie haben wenig Zeit, wollen aber Fett verbrennen und Muskeln aufbauen?</p>
-          <p>You have little time, but want to burn fat and build muscles?</p>
+          <p style="color: lightgreen">You have little time, but want to burn fat and build muscles?</p>
         </section>
 				<section data-background-image="img/ZsMwlm2-redish.jpg">
           <h3>NMT Challenges – Input</h3>
@@ -379,10 +235,10 @@ e~ = best translation, the one with highest probability</code></pre>
         </section>
         <section data-background-image="img/ZsMwlm2-redish.jpg">
           <h3>NMT Challenges – Rare Words</h3>
-          <p>Ok we can now represent 30,000 words as vectors, what about the rest?</p>
+          <p>Ok,  we can now represent 30,000 words as vectors, what about unseen words?</p>
         </section>
         <section data-background-image="img/ZsMwlm2-redish.jpg">
-          <h3>NMT Challenges – Byte Pair Encoding</h3>
+          <h3>NMT Challenges – Byte Pair Encoding (BPE)</h3>
           <img src='img/bpe.png' style='max-width: 65%; border: none; background: none;box-shadow: none; '/>
           <p style='font-size: 35%;'>Rico Sennrich, Barry Haddow and Alexandra Birch (2016): Neural Machine Translation of Rare Words with Subword Units Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (ACL 2016). Berlin, Germany.</p>
         </section>
@@ -480,7 +336,7 @@ e~ = best translation, the one with highest probability</code></pre>
          </section>
 
 				 <section data-background-image="img/ZsMwlm2-yellowish.jpg">
- 					<h3>Pipeline Tooling</h3>
+ 					<h3>Multilingual Search Pipeline Tooling</h3>
            <ul style='font-size: 80%;'>
              <li>Apache NiFi</li>
 						 <li>Apache OpenNLP</li>
@@ -493,27 +349,27 @@ e~ = best translation, the one with highest probability</code></pre>
 					 <ul style='font-size: 80%;'>
 						 <li>Data flow orchestration</li>
 						 <li>Able to ingest and manipulate data using processors</li>
-						 <li>Organized into <i>flows</i><li>
+						 <li>Organized into <i>flows</i></li>
 						 <li>Out-of-the-box QuerySolr processor</li>
 						 <ul>
 							 <li>Executes a query against a Solr instance</li>
 							 <li>Results returned as XML</li>
 						 </ul>
-						 <li>https://nifi.apache.org/</li>
-						 <li>https://github.com/jzonthemtn/multilanguage-search</li>
+						 <li><i class="fa fa-github" aria-hidden="true"></i> NiFi: <a href="https://nifi.apache.org/">https://nifi.apache.org/</a></li>
+						 <li><i class="fa fa-github" aria-hidden="true"></i> Code for the pipeline: https://github.com/jzonthemtn/multilanguage-search</li>
 					 </ul>
 				 </section>
 				 <section data-background-image="img/ZsMwlm2-yellowish.jpg">
 					 <h3>Apache OpenNLP</h3>
 					 <ul style='font-size: 80%;'>
 						 <li>Library of common NLP tools</li>
-						 <li>This pipeline uses:</li>
+						 <li>Our pipeline uses:</li>
 						 <ul>
 							 <li>Language detection</li>
 							 <li>Sentence extraction</li>
 							 <li>Tokenization</li>
 						 </ul>
-						 <li>https://opennlp.apache.org</li>
+						 <li><i class="fa fa-github" aria-hidden="true"></i> <a href="https://opennlp.apache.org">https://opennlp.apache.org</li>
 					 </ul>
 				 </section>
         <section data-background-image="img/ZsMwlm2-yellowish.jpg">
@@ -527,7 +383,7 @@ e~ = best translation, the one with highest probability</code></pre>
               <li>Transformer Models with self-attention</li>
               <li>Fully convolutional sequence-to-sequence models</li>
 					  </ul>
-            <li><i class="fa fa-github" aria-hidden="true"></i> https://github.com/awslabs/sockeye</li>
+            <li><i class="fa fa-github" aria-hidden="true"></i> <a href="https://github.com/awslabs/sockeye">https://github.com/awslabs/sockeye</li>
           </ul>
         </section>
 				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
@@ -536,17 +392,11 @@ e~ = best translation, the one with highest probability</code></pre>
 						<li>Indexed plain text news articles</li>
 						<li>~100,000 English news articles</li>
 						<li>~30,000 German news articles</li>
-						<ul>
-						<li>Deep Recurrent Neural Networks with Attention</li>
-						<li>Transformer Models with self-attention</li>
-						<li>Fully convolutional sequence-to-sequence models</li>
-					</ul>
-						<li><i class="fa fa-github" aria-hidden="true"></i> https://github.com/awslabs/sockeye</li>
-					</ul>
 				</section>
-				<section data-background-color="#9E9E9E">
+				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
 						<h4>NiFi Flow</h4>
 						<img src='img/nifi-flow.png' style='max-width: 100%; border: none; box-shadow: none; background: none; float: left;' align="center"/>
+						<p>Also available in the GitHub repo</p>
 				</section>
         <section data-background-image="img/ZsMwlm2-yellowish.jpg">
           <h3>Credits</h3>
