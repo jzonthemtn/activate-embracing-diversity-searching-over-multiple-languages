@@ -133,41 +133,7 @@
           <img src="img/transformer.png" style="max-width: 25%; margin: 0px, 20px, 0px, 20px; border: none; background: none;box-shadow: none; "/>
           <p style="font-size: 35%;">"Attention Is All You Need" - Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin <br/> Google Brain https://arxiv.org/abs/1706.03762</p>
         </section>
-				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
-          <h3>NMT versus SMT at Scale</h3>
-          <div style="font-size: 85%;">
-            <table style="color: #ffffff">
-              <tr>
-								<th>Sockeye (NMT)</th>
-                <th>Apache Joshua (SMT)</th>
-              </tr>
-              <tr>
-								<td>High Quality Translations</td>
-                <td>Reasonable Quality Translation</td>
-              </tr>
-              <tr>
-								<td>Python 3 / C++</td>
-                <td>Java / C++</td>
-              </tr>
-              <tr>
-								<td>Model size ~256 MB</td>
-                <td>Model size 60GB-120GB</td>
-              </tr>
-              <tr>
-								<td>Simple Training Process</td>
-                <td>Complicated Training Process</td>
-              </tr>
-              <tr>
-								<td>400 lines of code</td>
-                <td>Relatively complex implementation</td>
-              </tr>
-              <tr>
-								<td>High translation costs</td>
-                <td>Low translation costs</td>
-              </tr>
-            </table>
-          </div>
-        </section>
+
 				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
           <h3>NMT versus SMT at Scale</h3>
           <div style="font-size: 85%;">
@@ -295,26 +261,14 @@
            </ul><br/><br/>
 
            <span style="font-size: 50%;">New layer norm, top-k, batch-mul, transpose, smoothing op.  3.5x speedup so far.  Working in branches:</span><br/>
-           <span style="font-size: 50%;">https://github.com/MXNetEdge/sockeye/tree/dev_speed</span><br/>
-           <span style="font-size: 50%;">https://github.com/MXNetEdge/incubator-mxnet/tree/dev_speed</span><br/>
+           <span style="font-size: 50%;"><i class="fa fa-github" aria-hidden="true"></i> https://github.com/MXNetEdge/sockeye/tree/dev_speed</span><br/>
+           <span style="font-size: 50%;"><i class="fa fa-github" aria-hidden="true"></i> https://github.com/MXNetEdge/incubator-mxnet/tree/dev_speed</span><br/>
          </section>
-         <section data-background-image="img/ZsMwlm2-redish.jpg">
-           <h3>Apache MXNet Profiling Tools</h3>
-           <table>
-             <tr>
-               <th>CPU Profiler (vtune)</th>
-               <th>GPU Profiler (nvprof)</th>
-             </tr>
-           </table>
-           <table>
-             <td><img src="img/vtune_2.png" style="width: 400px; border: none; background: none;box-shadow: none; "/></td>
-             <td><img src="img/lstm.png" style="width: 400px; border: none; background: none;box-shadow: none; "/></td>
-           </table>
-         </section>
+
          <section data-background-image="img/ZsMwlm2-redish.jpg">
            <h3>TVM</h3>
              <p style="font-size: 75%;">TVM is a Tensor intermediate representation(IR) stack for deep learning systems. It is designed to close the gap between the productivity-focused deep learning frameworks, and the performance- and efficiency-focused hardware backends. TVM works with deep learning frameworks to provide end to end compilation to different backends. </p>
-             <p style="font-size: 50%;">https://github.com/dmlc/tvm</p>
+             <p style="font-size: 50%;"><i class="fa fa-github" aria-hidden="true"></i> https://github.com/dmlc/tvm</p>
          </section>
          <section data-background-image="img/ZsMwlm2-redish.jpg">
            <h3>Alibaba TVM Optimization</h3>
@@ -330,6 +284,25 @@
            <img src="img/tc_evol_slower.gif" style="width: 400px; border: none; background: none;box-shadow: none; "/><br/>
            <p style="font-size: 50%;">https://research.fb.com/announcing-tensor-comprehensions/</p>
          </section>
+
+				 <section data-background-image="img/ZsMwlm2-redish.jpg">
+					 <h3>Document Summarization</h3>
+					 <table style="color: #ffffff">
+						 <tr>
+							 <th>Extractive</th>
+							 <th>Abstractive</th>
+						 </tr>
+						 <tr>
+							 <td>Original Content</td>
+							 <td>New Content</td>
+						 </tr>
+						 <tr>
+							 <td>Easier</td>
+							 <td>More Difficult</td>
+						 </tr>
+					 </table>
+					 <p>Summarizing results on-the-fly gives flexibility.</p>
+				 </section>
 
 				 <section data-background-image="img/ZsMwlm2-yellowish.jpg">
  					<h3>Multilingual Search Pipeline</h3>
@@ -387,8 +360,8 @@
          </section>
 				 <section data-background-image="img/ZsMwlm2-yellowish.jpg">
  					<h3>Solr</h3>
+					<p>Indexed plain text news articles:</p>
  					<ul style="font-size: 80%;">
- 						<li>Indexed plain text news articles</li>
  						<li>~100,000 English news articles</li>
  						<li>~30,000 German news articles</li>
  					</ul>
@@ -405,6 +378,12 @@
 				<section data-background-image="img/ZsMwlm2-yellowish.jpg">
 						<h4>NiFi Flow</h4>
 						<img src="img/nifi-flow.png" style="max-width: 85%; border: none; box-shadow: none; background: none; align: center"/>
+				</section>
+				<section data-background-image="img/ZsMwlm2.jpg">
+					<h2>The Code and NiFi Flow</h2>
+					<ul>
+						<li><a href="https://github.com/jzonthemtn/multilanguage-search">https://github.com/jzonthemtn/multilanguage-search</a></li>
+					</ul>
 				</section>
         <section data-background-image="img/ZsMwlm2.jpg">
           <h2>Questions?</h2>
